@@ -1,3 +1,6 @@
+const directionsFile = require('./day5_directions');
+let directions = directionsFile.directions;
+
 let arrayx = ['B','V','W','T','Q','N','H','D'];
 let arrayx1 = ['B','W','D'];
 let arrayx2 = ['C','J','W','Q','S','T'];
