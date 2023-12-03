@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '../adventofcode')
+sys.path.insert(0, '../adventofcode_py_py')
 
 import fetch_puzzle
 
