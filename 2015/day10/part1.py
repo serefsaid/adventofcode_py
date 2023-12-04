@@ -1,11 +1,11 @@
 puzzle_input = '1321131112'
-#111312211331
+
 def find_convertion(part):
     name = part[0]
     quantity = str(len(part))
     return quantity+name
 
-def parse(puzzle):
+def look_and_say(puzzle):
     answer = ''
     newStr = ''
     old_number = ''
@@ -20,6 +20,6 @@ def parse(puzzle):
     return answer
 
 for i in range(0,40):#change this to 50 for part 2
-    puzzle_input = parse(puzzle_input)
+    puzzle_input = look_and_say(puzzle_input)
 
 print(len(puzzle_input))
