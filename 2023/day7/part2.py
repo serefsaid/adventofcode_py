@@ -12,9 +12,15 @@ puzzle = [[piece[0],int(piece[1])] for piece in [line.split() for line in lines]
 from collections import Counter
 
 def hand_type(code):
-    game_point = 0
+    if code!='JJJJJ':
+        code = code.replace('J','')
     char_counts = Counter(code)
+    if code!='JJJJJ':
+        jokers_to_add = 5-len(code)
+        joker_new_value = char_counts.most_common()[0][0]#most common char
+        char_counts[joker_new_value] += jokers_to_add#consider jokers as most common char
     values =list(char_counts.values())
+    game_point = 0
     if values.count(5)==1:
         game_point = 1#Five of a kind
     elif values.count(4)==1:
@@ -32,7 +38,7 @@ def hand_type(code):
     return game_point
 
 def order(puzzle):
-    card_priority = {'A':1, 'K':2, 'Q':3, 'J':4, 'T':5, '9':6, '8':7, '7':8, '6':9, '5':10, '4':11, '3':12,'2':13}#strongest to weakest
+    card_priority = {'A':1, 'K':2, 'Q':3, 'T':4, '9':5, '8':6, '7':7, '6':8, '5':9, '4':10, '3':11,'2':12, 'J':13}#strongest to weakest
     ranks = []
     for piece in puzzle:
         char_quantities = []
