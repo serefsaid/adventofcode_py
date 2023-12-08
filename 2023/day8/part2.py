@@ -51,5 +51,3 @@ def find_lcm_of_array(arr):
         lcm_result = lcm(lcm_result, arr[i])
     return lcm_result
 print(find_lcm_of_array(multipliers))
-#print(find_lcm_of_array([3,2,5]))
-print(multipliers)
