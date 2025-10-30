@@ -12,7 +12,7 @@ def is_safe(numbers):
     to_report = True
     if not increase and not decrease:
         return False
-    for idx in range(0,len(numbers)-1): 
+    for idx in range(len(numbers)-1): 
         num = numbers[idx]
         next_num = numbers[idx+1]
         if increase:
@@ -25,10 +25,9 @@ def is_safe(numbers):
     return to_report
 
 safe_reports = 0
-for idx in range(0,len(lines)):
+for idx in range(len(lines)):
     numbers = list(map(int,lines[idx].split()))
-    to_report = is_safe(numbers)
-    if to_report:
+    if is_safe(numbers):
         safe_reports += 1
 
 print(safe_reports)
