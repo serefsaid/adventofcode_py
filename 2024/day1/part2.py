@@ -3,7 +3,7 @@ sys.path.insert(0, '../adventofcode_py')
 
 import fetch_puzzle
 
-puzzle_input = fetch_puzzle.get_puzzle_input(1,2024)
+puzzle_input = fetch_puzzle.get_puzzle_input(2,2024)
 
 lines = puzzle_input.split('\n')
 
@@ -29,4 +29,4 @@ for idx in range(0,len(lines)):
 
 
 print(total_distance)
-#python 2024/day1/part2.py
+#python 2024/day2/part2.py

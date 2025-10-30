@@ -6,14 +6,12 @@ import fetch_puzzle
 puzzle_input = fetch_puzzle.get_puzzle_input(2,2024)
 lines = puzzle_input.split('\n')
 
-safe_reports = 0
-for idx in range(0,len(lines)):
-    numbers = list(map(int,lines[idx].split()))
+def is_safe(numbers):
     increase = numbers[0]<numbers[1]
     decrease = numbers[0]>numbers[1]
-    if not increase and not decrease:
-        continue
     to_report = True
+    if not increase and not decrease:
+        return False
     for idx in range(0,len(numbers)-1): 
         num = numbers[idx]
         next_num = numbers[idx+1]
@@ -24,7 +22,12 @@ for idx in range(0,len(lines)):
 
         if diff>3 or diff<1:
             to_report = False
-            
+    return to_report
+
+safe_reports = 0
+for idx in range(0,len(lines)):
+    numbers = list(map(int,lines[idx].split()))
+    to_report = is_safe(numbers)
     if to_report:
         safe_reports += 1
 

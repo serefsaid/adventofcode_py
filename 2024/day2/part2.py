@@ -3,30 +3,44 @@ sys.path.insert(0, '../adventofcode_py')
 
 import fetch_puzzle
 
-puzzle_input = fetch_puzzle.get_puzzle_input(1,2024)
-
+puzzle_input = fetch_puzzle.get_puzzle_input(2,2024)
 lines = puzzle_input.split('\n')
 
-evens = []
-odds = []
-for line in lines:
-    splitted_line = line.split("   ")
-    evens.append(int(splitted_line[0]))
-    odds.append(int(splitted_line[1]))
-
-total_distance = 0
+safe_reports = 0
 for idx in range(0,len(lines)):
-    even_number = evens[idx]
-    odds_clone = odds.copy()
-    similarity_score = 0
-    while True:
-        if even_number in odds_clone:
-            odds_clone.remove(even_number)
-            similarity_score += 1
+    numbers = list(map(int,lines[idx].split()))
+    for x in range(0,2):
+        if x==1:
+            tolerated = True
+            numbers.pop(0)
         else:
+            tolerated = False
+        increase = numbers[0]<numbers[1]
+        decrease = numbers[0]>numbers[1]
+        if not increase and not decrease:
+            if tolerated:
+                continue
+            else:
+                tolerated = True
+        to_report = True
+        for idx in range(0,len(numbers)-1): 
+            num = numbers[idx]
+            next_num = numbers[idx+1]
+            if increase:
+                diff = next_num - num
+            elif decrease:
+                diff = num - next_num
+
+            if diff>3 or diff<1 and tolerated:
+                to_report = False
+            elif diff>3 or diff<1:
+                tolerated = True
+        if to_report:
+            safe_reports += 1
             break
-    total_distance += even_number * similarity_score
 
 
-print(total_distance)
-#python 2024/day1/part2.py
+            
+
+print(safe_reports)
+#python 2024/day2/part2.py
